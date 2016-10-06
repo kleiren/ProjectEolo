@@ -13,51 +13,138 @@
     android:background="@drawable/ic_backgroud_top">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="417dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
+            android:layout_height="match_parent"
             android:layout_weight="0.82">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_base"
-                android:id="@+id/imageView3"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:id="@+id/layout_enemy">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_base"
-                android:id="@+id/imageView4"
-                android:layout_below="@+id/imageView3"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="63dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_base"
+                    android:id="@+id/imageView3"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
 
-            <ImageView
-                android:layout_width="@dimen/enemy"
-                android:layout_height="@dimen/enemy"
-                app:srcCompat="@drawable/ic_combat_minifig"
-                android:id="@+id/imageView7"
-                android:layout_alignBottom="@+id/imageView4"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="40dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginBottom="16dp" />
+                <ImageView
+                    app:srcCompat="@drawable/ic_rusablub"
+                    android:id="@+id/imageView6"
+                    android:layout_height="@dimen/enemy"
+                    android:layout_width="@dimen/enemy"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/editText"
+                    android:layout_toEndOf="@+id/editText"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp" />
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_lifebar"
+                    android:id="@+id/imageView2"
+                    android:layout_centerVertical="true"
+                    android:layout_alignRight="@+id/editText"
+                    android:layout_alignEnd="@+id/editText"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginEnd="14dp" />
+
+                <TextView
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="none|textPersonName"
+                    android:text="Name"
+                    android:ems="10"
+                    android:id="@+id/editText"
+                    android:background="@drawable/ic_nameplate"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="15dp"
+                    android:textSize="24sp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/layout_player">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_base"
+                    android:id="@+id/imageView4"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2"
+                    android:background="@drawable/ic_nameplate"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="24sp"
+                    android:layout_above="@+id/imageView4"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="175dp" />
+
+                <ImageView
+                    android:layout_width="@dimen/enemy"
+                    android:layout_height="@dimen/enemy"
+                    app:srcCompat="@drawable/ic_rednamrahc"
+                    android:id="@+id/imagePlayer"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@+id/textView2"
+                    android:layout_toStartOf="@+id/textView2"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginEnd="24dp" />
+
+                <ImageView
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_lifebar"
+                    android:id="@+id/imageView"
+                    android:layout_marginBottom="11dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_width="85dp"
+                    android:layout_alignBottom="@+id/textView2"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
             <TextView
                 android:text="TextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="@android:dimen/app_icon_size"
                 android:layout_alignParentBottom="true"
                 android:id="@+id/textView"
@@ -72,45 +159,35 @@
                 android:paddingTop="5dp"
                 android:paddingLeft="10dp" />
 
-            <ImageView
-                app:srcCompat="@drawable/ic_rusablub"
-                android:id="@+id/imageView6"
-                android:layout_height="@dimen/enemy"
-                android:layout_width="@dimen/enemy"
-                android:layout_marginLeft="21dp"
-                android:layout_marginStart="21dp"
-                android:layout_above="@+id/imageView7"
-                android:layout_toRightOf="@+id/imageView7"
-                android:layout_toEndOf="@+id/imageView7"
-                android:layout_marginBottom="42dp" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_weight="1">
 
-        </RelativeLayout>
+                <Button
+                    android:text="Attack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_attack"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_text_background"
+                    android:onClick="attack" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_weight="1">
+                <Button
+                    android:text="Flee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button7"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_text_background" />
+            </LinearLayout>
 
-            <Button
-                android:text="Attack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button6"
-                android:layout_weight="1"
-                android:background="@drawable/ic_text_background" />
-
-            <Button
-                android:text="Flee"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button7"
-                android:layout_weight="1"
-                android:background="@drawable/ic_text_background" />
         </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

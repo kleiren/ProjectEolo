@@ -1,6 +1,7 @@
 package es.kleiren.eolo;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,6 +17,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import org.osmdroid.api.IMapController;
@@ -55,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         context = getApplicationContext();
-
         btn_forceBattle = (Button) findViewById(R.id.button);
 
         btn_forceBattle.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         // lon = -3.7678304314613342
         // lat = 40.33183226746575
 
@@ -107,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         mLocationOverlay.enableMyLocation();
 
         mCompassOverlay.enableCompass();
+        mapController.animateTo(new GeoPoint(40.33183226746575, -3.7678304314613342));
 
         mLocationOverlay.enableFollowLocation();
         mLocationOverlay.runOnFirstFix(new Runnable(){
