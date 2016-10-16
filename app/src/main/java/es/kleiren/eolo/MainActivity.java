@@ -168,8 +168,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         currentLocation = new GeoPoint(location);
         mapController.animateTo(currentLocation);
         mapController.setCenter(currentLocation);
-        if (monsterLocation != null && mLocationOverlay.getMyLocation().distanceTo(monsterLocation) > 150){
-            if (mOverlay.isEnabled())  mOverlay.removeAllItems();
+        if (monsterLocation != null && mOverlay.isEnabled() && mLocationOverlay.getMyLocation().distanceTo(monsterLocation) > 150){
+            mOverlay.removeAllItems();
             addMonsters(currentLocation);
         } else if (monsterLocation == null){
             addMonsters(currentLocation);
