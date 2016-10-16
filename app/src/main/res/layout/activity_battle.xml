@@ -42,35 +42,14 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
 
-                <ImageView
-                    app:srcCompat="@drawable/ic_rusablub"
-                    android:id="@+id/imageView6"
-                    android:layout_height="@dimen/enemy"
-                    android:layout_width="@dimen/enemy"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/editText"
-                    android:layout_toEndOf="@+id/editText"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp" />
-
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_lifebar"
-                    android:id="@+id/imageView2"
-                    android:layout_centerVertical="true"
-                    android:layout_alignRight="@+id/editText"
-                    android:layout_alignEnd="@+id/editText"
-                    android:layout_marginRight="14dp"
-                    android:layout_marginEnd="14dp" />
-
                 <TextView
                     android:layout_width="175dp"
                     android:layout_height="wrap_content"
                     android:inputType="none|textPersonName"
-                    android:text="Name"
+                    android:text=""
+                    android:fontFamily="casual"
                     android:ems="10"
-                    android:id="@+id/editText"
+                    android:id="@+id/enemyname"
                     android:background="@drawable/ic_nameplate"
                     android:paddingLeft="10dp"
                     android:paddingBottom="15dp"
@@ -78,6 +57,28 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
+
+                <ImageView
+                    app:srcCompat="@drawable/ic_asrobot_pix"
+                    android:id="@+id/imageView6"
+                    android:layout_width="150dp"
+                    android:layout_marginBottom="11dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/enemyhp"
+                    android:layout_toEndOf="@+id/enemyhp"
+                    android:layout_height="150dp" />
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_lifebar"
+                    android:id="@+id/enemyhp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_alignBottom="@+id/enemyname"
+                    android:layout_alignRight="@+id/enemyname"
+                    android:layout_alignEnd="@+id/enemyname"
+                    android:layout_marginBottom="11dp" />
 
             </RelativeLayout>
 
@@ -97,11 +98,12 @@
                     android:layout_alignParentStart="true" />
 
                 <TextView
-                    android:text="TextView"
+                    android:text=""
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView2"
+                    android:id="@+id/playername"
                     android:background="@drawable/ic_nameplate"
                     android:paddingBottom="15dp"
+                    android:fontFamily="casual"
                     android:paddingLeft="10dp"
                     android:textSize="24sp"
                     android:layout_above="@+id/imageView4"
@@ -115,8 +117,8 @@
                     app:srcCompat="@drawable/ic_rednamrahc"
                     android:id="@+id/imagePlayer"
                     android:layout_alignParentBottom="true"
-                    android:layout_toLeftOf="@+id/textView2"
-                    android:layout_toStartOf="@+id/textView2"
+                    android:layout_toLeftOf="@+id/playername"
+                    android:layout_toStartOf="@+id/playername"
                     android:layout_marginRight="24dp"
                     android:layout_marginEnd="24dp" />
 
@@ -128,7 +130,7 @@
                     android:layout_marginRight="14dp"
                     android:layout_marginEnd="14dp"
                     android:layout_width="85dp"
-                    android:layout_alignBottom="@+id/textView2"
+                    android:layout_alignBottom="@+id/playername"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
             </RelativeLayout>
@@ -143,21 +145,18 @@
             android:layout_alignParentStart="true">
 
             <TextView
-                android:text="TextView"
+                android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="@android:dimen/app_icon_size"
                 android:layout_alignParentBottom="true"
-                android:id="@+id/textView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
+                android:id="@+id/infotext"
                 android:background="@drawable/ic_text_background"
                 android:fontFamily="casual"
                 android:textSize="24sp"
                 android:textColor="@android:color/background_light"
                 android:paddingTop="5dp"
-                android:paddingLeft="10dp" />
+                android:paddingLeft="10dp"
+                android:layout_marginBottom="5dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -172,16 +171,23 @@
                     android:text="Attack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="casual"
+
                     android:id="@+id/btn_attack"
                     android:layout_weight="1"
+                    android:textColor="@android:color/background_light"
+
                     android:background="@drawable/ic_text_background"
-                    android:onClick="attack" />
+                    android:onClick="attack"
+                    android:layout_marginRight="5dp" />
 
                 <Button
                     android:text="Flee"
                     android:layout_width="wrap_content"
+                    android:fontFamily="casual"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button7"
+                    android:textColor="@android:color/background_light"
+                    android:id="@+id/btn_flee"
                     android:layout_weight="1"
                     android:background="@drawable/ic_text_background" />
             </LinearLayout>

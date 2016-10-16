@@ -9,9 +9,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
     <Button
-        android:text="Force Battle"
+        android:text="  Force Battle  "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/ic_text_background"
+        android:fontFamily="casual"
+        android:textColor="@android:color/background_light"
         android:id="@+id/button"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
