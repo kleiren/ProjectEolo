@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     public void startBattle(){
-        mOverlay.removeAllItems();
         Intent intent = new Intent(getApplicationContext(), Battle.class);
         startActivityForResult(intent, 1);
     }

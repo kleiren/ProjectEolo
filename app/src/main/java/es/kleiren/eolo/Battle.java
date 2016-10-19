@@ -1,6 +1,7 @@
 package es.kleiren.eolo;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,7 @@ import android.widget.Toast;
 
 public class Battle extends AppCompatActivity {
 
-    ImageView imagePlayer, enemyHp;
+    ImageView imagePlayer;
     Animation moveInLeft, moveInRight, attack, shrink;
     RelativeLayout layoutPlayer, layoutEnemy;
     TextView txtInfo, txtEnemy, txtPlayer;
@@ -31,11 +32,10 @@ public class Battle extends AppCompatActivity {
         txtPlayer = (TextView) findViewById(R.id.playername);
 
         txtInfo.setText("A wild Asrobot appeared!");
-        txtPlayer.setText("Rednamrahc");
-        txtEnemy.setText("Asrobot");
+        txtPlayer.setText("MYOD");
+        txtEnemy.setText("ASROBOT");
 
         imagePlayer = (ImageView) findViewById(R.id.imagePlayer);
-        enemyHp = (ImageView) findViewById(R.id.enemyhp);
         layoutEnemy = (RelativeLayout) findViewById(R.id.layout_enemy);
         layoutPlayer = (RelativeLayout) findViewById(R.id.layout_player);
 
@@ -56,8 +56,12 @@ public class Battle extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 txtInfo.setText("It was very effective!");
-                enemyHp.startAnimation(shrink);
-            }
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        finish();                    }
+                }, 1000);            }
 
             @Override
             public void onAnimationRepeat(Animation animation) {
@@ -85,7 +89,7 @@ public class Battle extends AppCompatActivity {
     }
 
     public void attack(View v){
-        txtInfo.setText("Attack Rednamrahc!");
+        txtInfo.setText("Attack MYOD!");
         imagePlayer.startAnimation(attack);
     }
 

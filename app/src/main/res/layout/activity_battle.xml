@@ -61,24 +61,13 @@
                 <ImageView
                     app:srcCompat="@drawable/ic_asrobot_pix"
                     android:id="@+id/imageView6"
-                    android:layout_width="150dp"
-                    android:layout_marginBottom="11dp"
+                    android:layout_marginRight="11dp"
+                    android:layout_marginEnd="11dp"
+                    android:layout_width="175dp"
+                    android:layout_height="175dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/enemyhp"
-                    android:layout_toEndOf="@+id/enemyhp"
-                    android:layout_height="150dp" />
-
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_lifebar"
-                    android:id="@+id/enemyhp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_alignBottom="@+id/enemyname"
-                    android:layout_alignRight="@+id/enemyname"
-                    android:layout_alignEnd="@+id/enemyname"
-                    android:layout_marginBottom="11dp" />
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
 
@@ -95,7 +84,9 @@
                     android:id="@+id/imageView4"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_toLeftOf="@+id/playername"
+                    android:layout_toStartOf="@+id/playername" />
 
                 <TextView
                     android:text=""
@@ -112,27 +103,17 @@
                     android:layout_width="175dp" />
 
                 <ImageView
-                    android:layout_width="@dimen/enemy"
-                    android:layout_height="@dimen/enemy"
-                    app:srcCompat="@drawable/ic_rednamrahc"
+                    app:srcCompat="@drawable/ic_myod"
                     android:id="@+id/imagePlayer"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toLeftOf="@+id/playername"
-                    android:layout_toStartOf="@+id/playername"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginEnd="24dp" />
-
-                <ImageView
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_lifebar"
-                    android:id="@+id/imageView"
                     android:layout_marginBottom="11dp"
-                    android:layout_marginRight="14dp"
-                    android:layout_marginEnd="14dp"
-                    android:layout_width="85dp"
-                    android:layout_alignBottom="@+id/playername"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginStart="26dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
             </RelativeLayout>
         </LinearLayout>
 
