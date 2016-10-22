@@ -1,24 +1,23 @@
 package es.kleiren.eolo;
 
 import android.Manifest;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ScaleDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
@@ -41,10 +40,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private CompassOverlay mCompassOverlay;
     private MapView map;
     private ItemizedOverlayWithFocus<OverlayItem> mOverlay;
-    private Button btn_forceBattle;
+    private Button btnForceBattle;
     private IMapController mapController;
     private GeoPoint monsterLocation;
     private GeoPoint currentLocation;
+    private Button btnMonsterList;
 
 
     @Override
@@ -53,12 +53,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setContentView(R.layout.activity_main);
 
         context = getApplicationContext();
-        btn_forceBattle = (Button) findViewById(R.id.button);
-
-        btn_forceBattle.setOnClickListener(new View.OnClickListener() {
+        btnForceBattle = (Button) findViewById(R.id.btnForceBattle);
+        btnMonsterList = (Button) findViewById(R.id.btnMonsterList);
+        btnForceBattle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startBattle();
+                Intent intent = new Intent(getApplicationContext(), Battle.class);
+                startActivity(intent);
+            }
+        });
+        btnMonsterList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).replace(R.id.container, new MonsterList()).addToBackStack(null).commit();
             }
         });
 
@@ -83,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         // lon = -3.7678304314613342
         // lat = 40.33183226746575
-
 
         mapController = map.getController();
         mapController.setZoom(19);
@@ -129,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     public void startBattle(){
+        mOverlay.removeAllItems();
         Intent intent = new Intent(getApplicationContext(), Battle.class);
         startActivityForResult(intent, 1);
     }
@@ -167,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         currentLocation = new GeoPoint(location);
         mapController.animateTo(currentLocation);
         mapController.setCenter(currentLocation);
-        if (monsterLocation != null && mOverlay.isEnabled() && mLocationOverlay.getMyLocation().distanceTo(monsterLocation) > 150){
+        if (monsterLocation != null && mOverlay != null && mLocationOverlay.getMyLocation().distanceTo(monsterLocation) > 150){
             mOverlay.removeAllItems();
             addMonsters(currentLocation);
         } else if (monsterLocation == null){
