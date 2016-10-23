@@ -17,21 +17,19 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.osmdroid.api.IMapController;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
-import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-
+//Now implements LocationListener to ease the control of the GPS
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
     private MyLocationNewOverlay mLocationOverlay;
@@ -53,15 +51,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setContentView(R.layout.activity_main);
 
         context = getApplicationContext();
+
+        //Connection with layout and resources
         btnForceBattle = (Button) findViewById(R.id.btnForceBattle);
         btnMonsterList = (Button) findViewById(R.id.btnMonsterList);
         btnForceBattle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Battle.class);
+                //Going to new activity
+                Intent intent = new Intent(getApplicationContext(), BattleActivity.class);
                 startActivity(intent);
             }
         });
+
         btnMonsterList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,42 +71,44 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             }
         });
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        //Checks for location permission
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+        //Location access and configuration
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 100,
                 this);
 
+        //OSM stuff
         //Important! set your user agent to prevent getting banned from the osm servers
         org.osmdroid.tileprovider.constants.OpenStreetMapTileProviderConstants.setUserAgentValue(BuildConfig.APPLICATION_ID);
 
         // Map definition
         map = (MapView) findViewById(R.id.map);
 
+        //Player location
         this.mLocationOverlay = new MyLocationNewOverlay( new GpsMyLocationProvider(context),map);
         map.getOverlays().add(this.mLocationOverlay);
-
-        this.mCompassOverlay = new CompassOverlay(context, new InternalCompassOrientationProvider(context), map);
-        map.getOverlays().add(this.mCompassOverlay);
 
         // lon = -3.7678304314613342
         // lat = 40.33183226746575
 
+        //Map configuration
         mapController = map.getController();
         mapController.setZoom(19);
         map.setTilesScaledToDpi(true);
         mLocationOverlay.enableMyLocation();
         mapController.stopPanning();
-        mCompassOverlay.enableCompass();
         mapController.animateTo(new GeoPoint(40.33183226746575, -3.7678304314613342));
     }
 
+    //Adds mosnters in a redius of
     public void addMonsters(GeoPoint currentLocation){
         //your items
         ArrayList<OverlayItem> items = new ArrayList<OverlayItem>();
         Drawable newMarker = this.getResources().getDrawable(R.drawable.ic_asrobot_pix);
-        monsterLocation = getLocation(currentLocation, 100);
+        monsterLocation = getLocationInDefinedRadius(currentLocation, 100);
         OverlayItem monster = new OverlayItem("ASROBOT", "Hold to fight", monsterLocation);
         monster.setMarker(newMarker);
 
@@ -136,12 +140,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     public void startBattle(){
         mOverlay.removeAllItems();
-        Intent intent = new Intent(getApplicationContext(), Battle.class);
+        Intent intent = new Intent(getApplicationContext(), BattleActivity.class);
         startActivityForResult(intent, 1);
     }
 
 
-    public static GeoPoint getLocation(GeoPoint location,  int radius) {
+    public static GeoPoint getLocationInDefinedRadius(GeoPoint location, int radius) {
         GeoPoint result = new GeoPoint(location);
         Random random = new Random();
 
@@ -169,8 +173,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         addMonsters(currentLocation);
     }
 
+    //Location specific functions, what happens on each specific event
     @Override
     public void onLocationChanged(Location location) {
+        //When location changes, the map animates to the player position and adds new monsters
         currentLocation = new GeoPoint(location);
         mapController.animateTo(currentLocation);
         mapController.setCenter(currentLocation);
